@@ -1,0 +1,48 @@
+{
+  "name": "threejs-galaxy",
+  "version": "1.0.0",
+  "description": "ThreeJS Galaxy generator",
+  "main": "lib/bundle-umd.js",
+  "module": "lib/bundle-esm.js",
+  "author": "lexical.eights-0k@icloud.com",
+  "license": "MIT",
+  "files": [
+    "lib/bundle-umd.js",
+    "lib/bundle-esm.js",
+    "yarn.lock",
+    "LICENCE.txt",
+    "CONTRIBUTING.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build:clear": "rm -rf lib/*",
+    "build": "yarn run build:clear && __ENV=production rollup -c",
+    "dev": "__ENV=development rollup -c -w"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/plugin-transform-runtime": "^7.19.1",
+    "@babel/preset-env": "^7.19.3",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-image": "^2.1.1",
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@types/three": "^0.144.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "rollup-plugin-glsl": "^1.3.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^2.0.1",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "tslib": "^2.4.0",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "three": "^0.145.0"
+  }
+}
