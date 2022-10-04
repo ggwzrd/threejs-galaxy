@@ -1,7 +1,8 @@
 {
   "name": "threejs-galaxy",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Three.js Galaxy generator",
+  "repository": "https://github.com/ggwzrd/threejs-galaxy",
   "main": "lib/bundle-umd.js",
   "module": "lib/bundle-esm.js",
   "author": "lexical.eights-0k@icloud.com",
@@ -17,7 +18,8 @@
   "scripts": {
     "build:clear": "rm -rf lib/*",
     "build": "yarn run build:clear && __ENV=production rollup -c",
-    "dev": "__ENV=development rollup -c -w"
+    "dev": "__ENV=development rollup -c -w",
+    "prepublish": "yarn run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
