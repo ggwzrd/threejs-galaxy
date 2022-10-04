@@ -66,6 +66,8 @@ In order to start the animation you will need to add the following code.
 galaxy.play()
 ```
 
+> Full example can be found in [examples/basic.ts](src/examples/basic.ts)
+
 ## Contributing
 
 Consult [CONTRIBUTING.md](./CONTRIBUTING.md) to start contributing to threejs-galaxy.

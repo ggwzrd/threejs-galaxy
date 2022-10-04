@@ -7,27 +7,27 @@ import typescript from '@rollup/plugin-typescript';
 import serve from 'rollup-plugin-serve';
 import image from '@rollup/plugin-image';
 
-const env = process.env.__ENV
-const production = env === "production"
+const env = process.env.__ENV;
+const production = env === 'production';
 const devOutput = {
-  sourcemaps: true,
-  dir: 'lib/index.js',
+  sourcemap: true,
+  file: 'lib/index.js',
   format: 'esm'
-}
+};
 const productionOutput = [
   {
     file: 'lib/bundle-umd.js',
     format: 'umd',
-    name: 'threejs-galaxy',
+    name: 'threejs-galaxy'
   },
   {
     file: 'lib/bundle-esm.js',
-    format: 'esm',
+    format: 'esm'
   }
-]
+];
 
 const config = {
-  input: 'src/index.ts',
+  input: production ? 'src/index.ts' : 'src/app.ts',
   output: production ? productionOutput : devOutput,
   plugins: [
     image(),
@@ -53,8 +53,8 @@ const config = {
       verbose: true, // Disable console output
 
       // other livereload options
-      port: 35729,
-    }),
+      port: 35729
+    })
   ]
 };
 

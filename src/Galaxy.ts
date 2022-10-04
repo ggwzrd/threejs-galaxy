@@ -22,12 +22,12 @@ import barredSpiral from './glsl/barred-spiral.glsl';
 import fragment from './glsl/fragment.glsl';
 
 class Galaxy {
+  camera: PerspectiveCamera;
+
   private readonly canvas: HTMLElement;
   private readonly type: GalaxyTypes;
   private readonly layers: Layer[];
   private readonly window: Window;
-
-  camera: PerspectiveCamera;
   private readonly scene: Scene;
   private readonly renderer: WebGLRenderer;
   private readonly materials: ShaderMaterial[];
