@@ -1,7 +1,7 @@
 {
   "name": "threejs-galaxy",
   "version": "1.0.0",
-  "description": "ThreeJS Galaxy generator",
+  "description": "Three.js Galaxy generator",
   "main": "lib/bundle-umd.js",
   "module": "lib/bundle-esm.js",
   "author": "lexical.eights-0k@icloud.com",
