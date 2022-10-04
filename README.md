@@ -2,9 +2,8 @@
 
 # threejs-galaxy
 
-![Depfu](https://img.shields.io/depfu/dependencies/github/threejs-galaxy)
+![GitHub last commit](https://img.shields.io/github/last-commit/ggwzrd/threejs-galaxy)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/threejs-galaxy)
-![GitHub file size in bytes on a specified ref (branch/commit/tag)](https://img.shields.io/github/size/ggwzrd/threejs-galaxy/lib/build-umd.js?branch=main)
 ![npm](https://img.shields.io/npm/v/threejs-galaxy)
 ![NPM](https://img.shields.io/npm/l/threejs-galaxy)
 
