@@ -33,7 +33,7 @@ class Galaxy {
   private readonly materials: ShaderMaterial[];
   private stopAnimation: boolean;
 
-  constructor (opts: GalaxyOptions) {
+  constructor(opts: GalaxyOptions) {
     this.canvas = opts.canvas;
     this.type = opts.type || 'barred-spiral';
     this.layers = opts.layers;
@@ -66,7 +66,7 @@ class Galaxy {
     this.layers.forEach(this.generate);
   }
 
-  private generate (layer: Layer): void {
+  private generate(layer: Layer): void {
     const {
       count,
       color,
@@ -142,11 +142,11 @@ class Galaxy {
     }
   }
 
-  add (object: Object3D): void {
+  add(object: Object3D): void {
     this.scene.add(object);
   }
 
-  render (): void {
+  render(): void {
     this.resize();
     this.renderer.render(this.scene, this.camera);
   }
