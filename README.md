@@ -1,4 +1,4 @@
-![Milkyway Galaxy](./assets/milkyway.webp?raw=true "Screenshot of the galaxy generated using threejs-galaxy")
+![Milkyway Galaxy](./assets/milkyway.png?raw=true "Screenshot of the galaxy generated using threejs-galaxy")
 
 # threejs-galaxy
 
