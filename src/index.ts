@@ -1,3 +1,3 @@
-import Galaxy from "./Galaxy"
+import Galaxy from './Galaxy';
 
-export default Galaxy
+export default Galaxy;
