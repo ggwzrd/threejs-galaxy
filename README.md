@@ -1,7 +1,8 @@
-![Milkyway Galaxy](./assets/milkyway.png?raw=true "Screenshot of the galaxy generated using threejs-galaxy")
+![Milkyway Galaxy](src/assets/milkyway.png?raw=true "Screenshot of the galaxy generated using threejs-galaxy")
 
 # threejs-galaxy
 
+[![DeepScan grade](https://deepscan.io/api/teams/19163/projects/22509/branches/665919/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=19163&pid=22509&bid=665919)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ggwzrd/threejs-galaxy)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/threejs-galaxy)
 ![npm](https://img.shields.io/npm/v/threejs-galaxy)

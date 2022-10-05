@@ -1,11 +1,15 @@
 import Galaxy from 'Galaxy';
-import { OrbitControls } from 'OrbitControls';
+// @ts-expect-error
+import { OrbitControls } from '../helpers/OrbitControls';
 
+// @ts-expect-error
 import particleTexture from '../assets/particle-example.png';
+
+const canvas = document.createElement('canvas');
 
 function basicExample(): void {
   const galaxy = new Galaxy({
-    canvas: document.querySelector('#c'),
+    canvas: document.querySelector('#c') ?? canvas,
     window,
     layers: [
       {
@@ -16,7 +20,8 @@ function basicExample(): void {
     ]
   });
 
-  const controls = new OrbitControls(galaxy.camera, document.querySelector('#c'));
+  // eslint-disable-next-line no-new
+  new OrbitControls(galaxy.camera, document.querySelector('#c'));
   galaxy.render();
   galaxy.play();
 };

@@ -3,9 +3,10 @@ import glsl from 'rollup-plugin-glsl';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 import livereload from 'rollup-plugin-livereload';
-import typescript from '@rollup/plugin-typescript';
+import ts from '@rollup/plugin-typescript';
 import serve from 'rollup-plugin-serve';
 import image from '@rollup/plugin-image';
+import typescript from 'typescript';
 
 const env = process.env.__ENV;
 const production = env === 'production';
@@ -15,11 +16,6 @@ const devOutput = {
   format: 'esm'
 };
 const productionOutput = [
-  {
-    file: 'lib/bundle-umd.js',
-    format: 'umd',
-    name: 'threejs-galaxy'
-  },
   {
     file: 'lib/bundle-esm.js',
     format: 'esm'
@@ -41,9 +37,14 @@ const config = {
       // Source maps are on by default
       sourceMap: true
     }),
-    typescript(),
+    ts({
+      typescript,
+      tsconfig: production ? 'ts/es.tsconfig.json' : 'tsconfig.json'
+    }),
     !production && sourcemaps(),
-    nodeResolve(),
+    nodeResolve({
+      jail: 'src'
+    }),
     !production && babel({ babelHelpers: 'bundled' }),
     !production && serve({
       port: 3000

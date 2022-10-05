@@ -3,23 +3,24 @@
   "version": "1.0.2",
   "description": "Three.js Galaxy generator",
   "repository": "https://github.com/ggwzrd/threejs-galaxy",
-  "main": "lib/bundle-umd.js",
+  "main": "lib/bundle-esm.js",
   "module": "lib/bundle-esm.js",
+  "types": "lib/index.d.ts",
   "author": "lexical.eights-0k@icloud.com",
   "license": "MIT",
   "files": [
-    "lib/bundle-umd.js",
-    "lib/bundle-esm.js",
+    "lib/**/*",
     "yarn.lock",
     "LICENCE.txt",
     "CONTRIBUTING.md",
     "README.md"
   ],
   "scripts": {
-    "build:clear": "rm -rf lib/*",
-    "build": "yarn run build:clear && __ENV=production rollup -c",
+    "build:clean": "rm -rf lib/*",
+    "build": "yarn build:clean && __ENV=production rollup -c",
     "dev": "__ENV=development rollup -c -w",
-    "prepublish": "yarn run build"
+    "prepublishOnly": "yarn build",
+    "postpublish": "yarn build:clean"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
@@ -42,6 +43,7 @@
     "rollup-plugin-serve": "^2.0.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "tslib": "^2.4.0",
+    "typedoc": "^0.23.15",
     "typescript": "*"
   },
   "dependencies": {

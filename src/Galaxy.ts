@@ -4,6 +4,7 @@ import {
   WebGLRenderer,
   ShaderMaterial,
   sRGBEncoding,
+  // @ts-expect-error
   PlaneBufferGeometry,
   InstancedBufferGeometry,
   InstancedBufferAttribute,
@@ -18,14 +19,36 @@ import {
 
 import { doesNeedResize, lerp } from './helpers';
 
+// @ts-expect-error
 import barredSpiral from './glsl/barred-spiral.glsl';
+// @ts-expect-error
 import fragment from './glsl/fragment.glsl';
+
+interface Layer {
+  count: number
+  color: string
+  texture: string
+  sizeAmp?: number
+  minRadius?: number
+  maxRadius?: number
+  speedAmp?: number
+  yAmp?: number
+};
+interface GalaxyOptions {
+  canvas: HTMLElement
+  type?: GalaxyTypes
+  window?: Window
+  backgroundColor?: any
+
+  layers: Layer[]
+};
+
+type GalaxyTypes = 'spiral' | 'barred-spiral';
 
 class Galaxy {
   camera: PerspectiveCamera;
 
   private readonly canvas: HTMLElement;
-  private readonly type: GalaxyTypes;
   private readonly layers: Layer[];
   private readonly window: Window;
   private readonly scene: Scene;
@@ -35,9 +58,8 @@ class Galaxy {
 
   constructor(opts: GalaxyOptions) {
     this.canvas = opts.canvas;
-    this.type = opts.type || 'barred-spiral';
     this.layers = opts.layers;
-    this.window = opts.window || window;
+    this.window = opts.window ?? window;
     this.materials = [];
 
     this.renderer = new WebGLRenderer({ canvas: this.canvas });
@@ -129,7 +151,7 @@ class Galaxy {
 
   resize(): void {
     if (doesNeedResize(this.renderer)) {
-      const pixelRatio = Math.min(this.window.devicePixelRatio);
+      const pixelRatio = Math.min(this.window.devicePixelRatio, 2);
       const width = this.canvas.clientWidth * pixelRatio | 0;
       const height = this.canvas.clientHeight * pixelRatio | 0;
       const canvas = this.renderer.domElement;

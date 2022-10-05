@@ -1,21 +1,40 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    "target": "es2015",
+    "declaration": true,
+    "stripInternal": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "threejs-mouse-tracker": ["src/index.ts"]
+    },
+
+    "rootDirs": [
+      "src"
+    ],
+
+    "sourceRoot": "./src",
+    "inlineSourceMap": true,
+    "inlineSources": true,
+
+    "experimentalDecorators": true,
+    "declarationDir": "./src/types"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
-  "typeRoots": ["src/types", "node_modules/@types"]
+  "include": ["src"],
+  "typedocOptions": {
+    "out": "./docs",
+    "toc": false,
+    "excludePrivate": true,
+    "includes": "./src",
+    "target": "ES6",
+    "theme": "default",
+    "name": "True Myth"
+  }
 }
