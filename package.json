@@ -1,6 +1,6 @@
 {
   "name": "threejs-galaxy",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Three.js Galaxy generator",
   "repository": "https://github.com/ggwzrd/threejs-galaxy",
   "main": "lib/bundle-esm.js",
