@@ -4,9 +4,11 @@ module.exports = {
     es2021: true
   },
   extends: 'standard-with-typescript',
-  overrides: [{
-    files: ['src/**/*.js']
-  }],
+  overrides: [
+    {
+      files: ['src/**/*.js']
+    }
+  ],
   parserOptions: {
     project: './tsconfig.json',
     ecmaVersion: 'latest',
@@ -18,6 +20,7 @@ module.exports = {
     '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/space-before-function-paren': 'off',
     '@typescript-eslint/restrict-plus-operands': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off',
     'space-before-function-paren': ['error', 'never']
   }
 };

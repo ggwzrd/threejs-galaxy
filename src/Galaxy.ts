@@ -25,23 +25,26 @@ import barredSpiral from './glsl/barred-spiral.glsl';
 import fragment from './glsl/fragment.glsl';
 
 interface Layer {
-  count: number
-  color: string
-  texture: string
-  sizeAmp?: number
-  minRadius?: number
-  maxRadius?: number
-  speedAmp?: number
-  yAmp?: number
-};
+  count: number;
+  color: string;
+  texture: string;
+  sizeAmp?: number;
+  minRadius?: number;
+  maxRadius?: number;
+  speedAmp?: number;
+  yAmp?: number;
+}
 interface GalaxyOptions {
-  canvas: HTMLElement
-  type?: GalaxyTypes
-  window?: Window
-  backgroundColor?: any
+  canvas: HTMLElement;
+  type?: GalaxyTypes;
+  camera?: PerspectiveCamera;
+  scene?: Scene;
+  renderer?: WebGLRenderer;
+  window?: Window;
+  backgroundColor?: any;
 
-  layers: Layer[]
-};
+  layers: Layer[];
+}
 
 type GalaxyTypes = 'spiral' | 'barred-spiral';
 
@@ -62,16 +65,24 @@ class Galaxy {
     this.window = opts.window ?? window;
     this.materials = [];
 
-    this.renderer = new WebGLRenderer({ canvas: this.canvas });
-    this.scene = new Scene();
-    this.camera = new PerspectiveCamera(
-      70,
-      this.window.innerWidth / this.window.innerHeight,
-      0.000000000001,
-      1000
-    );
+    this.renderer =
+      opts.renderer ??
+      new WebGLRenderer({
+        canvas: this.canvas,
+        alpha: !opts.backgroundColor
+      });
+    this.scene = opts.scene ?? new Scene();
+    this.camera =
+      opts.camera ??
+      new PerspectiveCamera(
+        70,
+        this.canvas.clientWidth / this.canvas.clientHeight,
+        0.000000000001,
+        1000
+      );
 
-    this.renderer.setClearColor(opts.backgroundColor || 0x000000, 1);
+    opts.backgroundColor &&
+      this.renderer.setClearColor(opts.backgroundColor, 1);
     this.renderer.physicallyCorrectLights = true;
     this.renderer.outputEncoding = sRGBEncoding;
     this.camera.position.set(0, 3, 2);
@@ -114,9 +125,7 @@ class Galaxy {
       const y = (Math.random() - 0.05) * (lerp(0.2, 0.1, Math.random()) * yAmp);
       const z = r * Math.cos(theta);
 
-      pos.set([
-        x, y, z
-      ], index * 3);
+      pos.set([x, y, z], index * 3);
     }
 
     geo.setAttribute('pos', new InstancedBufferAttribute(pos, 3, false));
@@ -152,8 +161,8 @@ class Galaxy {
   resize(): void {
     if (doesNeedResize(this.renderer)) {
       const pixelRatio = Math.min(this.window.devicePixelRatio, 2);
-      const width = this.canvas.clientWidth * pixelRatio | 0;
-      const height = this.canvas.clientHeight * pixelRatio | 0;
+      const width = (this.canvas.clientWidth * pixelRatio) | 0;
+      const height = (this.canvas.clientHeight * pixelRatio) | 0;
       const canvas = this.renderer.domElement;
 
       this.renderer.setPixelRatio(pixelRatio);
@@ -175,7 +184,7 @@ class Galaxy {
 
   animate(): void {
     this.render();
-    this.materials.forEach(m => {
+    this.materials.forEach((m) => {
       m.uniforms.time.value += 1;
     });
   }
@@ -191,7 +200,7 @@ class Galaxy {
   }
 
   trackMouse(xyz: Vector3): void {
-    this.materials.forEach(m => {
+    this.materials.forEach((m) => {
       m.uniforms.uMouse.value = xyz;
     });
   }
