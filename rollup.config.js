@@ -13,7 +13,7 @@ const production = env === 'production';
 const devOutput = {
   sourcemap: true,
   file: 'lib/index.js',
-  format: 'esm'
+  format: 'iife'
 };
 const productionOutput = [
   {
@@ -42,20 +42,26 @@ const config = {
       tsconfig: production ? 'ts/es.tsconfig.json' : 'tsconfig.json'
     }),
     !production && sourcemaps(),
-    nodeResolve({
-      jail: 'src'
-    }),
+    nodeResolve(
+      production
+        ? {
+            jail: 'src'
+          }
+        : undefined
+    ),
     !production && babel({ babelHelpers: 'bundled' }),
-    !production && serve({
-      port: 3000
-    }),
-    !production && livereload({
-      watch: 'lib',
-      verbose: true, // Disable console output
+    !production &&
+      serve({
+        port: 3000
+      }),
+    !production &&
+      livereload({
+        watch: 'lib',
+        verbose: true, // Disable console output
 
-      // other livereload options
-      port: 35729
-    })
+        // other livereload options
+        port: 35729
+      })
   ]
 };
 
