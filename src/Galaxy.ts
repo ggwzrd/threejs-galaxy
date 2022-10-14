@@ -17,7 +17,7 @@ import {
   Object3D
 } from 'three';
 
-import { doesNeedResize, lerp } from './helpers';
+import { lerp } from './helpers';
 
 // @ts-expect-error
 import barredSpiral from './glsl/barred-spiral.glsl';
@@ -64,7 +64,6 @@ class Galaxy {
     this.layers = opts.layers;
     this.window = opts.window ?? window;
     this.materials = [];
-
     this.renderer =
       opts.renderer ??
       new WebGLRenderer({
@@ -97,6 +96,9 @@ class Galaxy {
     this.trackMouse = this.trackMouse.bind(this);
 
     this.layers.forEach(this.generate);
+    this.resize();
+
+    this.window.addEventListener('resize', this.resize, false);
   }
 
   private generate(layer: Layer): void {
@@ -159,18 +161,15 @@ class Galaxy {
   }
 
   resize(): void {
-    if (doesNeedResize(this.renderer)) {
-      const pixelRatio = Math.min(this.window.devicePixelRatio, 2);
-      const width = (this.canvas.clientWidth * pixelRatio) | 0;
-      const height = (this.canvas.clientHeight * pixelRatio) | 0;
-      const canvas = this.renderer.domElement;
+    const canvas = this.renderer.domElement;
+    const pixelRatio = Math.min(this.window.devicePixelRatio, 2);
+    const width = (canvas.offsetWidth * pixelRatio) | 0;
+    const height = (canvas.offsetHeight * pixelRatio) | 0;
 
-      this.renderer.setPixelRatio(pixelRatio);
-      this.renderer.setSize(width, height, false);
-
-      this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      this.camera.updateProjectionMatrix();
-    }
+    this.renderer.setSize(width, height, false);
+    this.renderer.setPixelRatio(pixelRatio);
+    this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    this.camera.updateProjectionMatrix();
   }
 
   add(object: Object3D): void {
@@ -178,7 +177,6 @@ class Galaxy {
   }
 
   render(): void {
-    this.resize();
     this.renderer.render(this.scene, this.camera);
   }
 

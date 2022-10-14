@@ -24,6 +24,6 @@ function basicExample(): void {
   new OrbitControls(galaxy.camera, document.querySelector('#c'));
   galaxy.render();
   galaxy.play();
-};
+}
 
 export default basicExample;
