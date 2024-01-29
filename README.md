@@ -12,6 +12,8 @@ This project is heavily inspired by [Yuri Artiukh's video](https://www.youtube.c
 
 I decided to make a module out of this since everyone should be able to generate their own galaxies and the creative possibilities are infinite. 👨‍🚀
 
+Check a few example that I have created on [wzrd.mk/galaxy](https://wzrd.mk/galaxy)
+
 > I do not provide the textures of the particles and stars to ensure that all galaxies are unique. You can find a basic example in [/assets](./assets/particle-example.png)
 
 - [threejs-galaxy](#threejs-galaxy)
